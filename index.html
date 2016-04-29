@@ -50,7 +50,8 @@
             <p class="event received">Device is Ready</p>
         </div>
 	<h2>Olá, mundo!</h2>
-	<button type="button" onClick="conectar();">Conectar</button>
+	<button type="button" onClick="conectar();">Gerar número aleatório</button>
+	<p id="aleatorio">O número aparecerá aqui!</p>
 	<input type="hidden" id="teste" name="teste" value="teste" />
     </div>
     <script type="text/javascript" src="cordova.js"></script>
@@ -66,7 +67,7 @@
 		  data: { codigo : Math.random() }
 		})
 		.done(function(data) {
-			alert( data.cod );
+			$('#aleatorio').val(data.cod);
 		})
 		.fail(function(xhr, ajaxOptions, thrownError) {
 			alert(xhr.status + '\n' + thrownError);
@@ -74,7 +75,6 @@
 		.always(function() {
 			//alert( "complete" );
 		});
-
 	}
     </script>
 </body>
