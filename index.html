@@ -62,15 +62,21 @@
 
 	function conectar() {
 		$.ajax({
-		  dataType: "json",
-		  url: "http://www.sisnave.com.br/tito/teste.php?rnd=" + Math.random(),
-		  data: { codigo : Math.random() }
+			type: 'GET',
+			url: "http://www.sisnave.com.br/tito/teste.php?rnd=" + Math.random(),
+			async: false,
+			dataType: "jsonp",
+			data: { codigo : Math.random() },
+			jsonp: "jsonCallback",
+			jsonpCallback: 'jsonCallback',
+			contentType: "application/json"
 		})
 		.done(function(data) {
-			$('#aleatorio').val(data.cod);
+			//alert(data.cod);
+			$('#aleatorio').text(data.cod);
 		})
 		.fail(function(xhr, ajaxOptions, thrownError) {
-			alert(xhr.status + '\n' + thrownError);
+			alert(ajaxOptions + '\n' + xhr.status + '\n' + thrownError);
 		})
 		.always(function() {
 			//alert( "complete" );
